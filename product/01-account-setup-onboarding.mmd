@@ -1,0 +1,27 @@
+flowchart TD
+    A[User visits app] --> B[Create Account]
+    B --> C[Account Created Successfully]
+    C --> D[Fill Personal Details Page]
+    D --> E{Personal Details Filled?}
+    E -->|Yes| F[Organisation Creation Page]
+    E -->|No| D
+    F --> G{Skip Organisation?}
+    G -->|No| H[Create Organisation]
+    G -->|Yes| I[Mark as Personal Account]
+    H --> J[Main Dashboard]
+    I --> J
+
+    K[Existing User Login] --> L{Personal Details Filled?}
+    L -->|No| D
+    L -->|Yes| M{Is Personal Account?}
+    M -->|Yes| J
+    M -->|No| N{Organisation Created?}
+    N -->|No| F
+    N -->|Yes| J
+
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style J fill:#fff3e0
+    style I fill:#fce4ec
+    style H fill:#f1f8e9

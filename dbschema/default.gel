@@ -1,0 +1,35 @@
+using extension auth;
+
+module default {
+  scalar type Role extending enum<Owner, Admin, Member>;
+
+  type User {
+    name: str;
+    required email: str {
+        constraint exclusive;
+    }
+    phone: str;
+    required identity: ext::auth::Identity {
+        constraint exclusive;
+    }
+    is_personal_account: bool;
+    personal_details_complete: bool;
+    # Link back to organization membership
+    membership: OrgMember;
+  }
+
+  type Organization {
+    required name: str;
+    multi members: OrgMember {
+        constraint exclusive;
+    }
+  }
+
+  type OrgMember {
+    required role: Role;
+    required user: User {
+        constraint exclusive;
+    }
+    required organization: Organization;
+  }
+}

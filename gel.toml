@@ -1,0 +1,7 @@
+watch = []
+
+[instance]
+server-version = "6.9"
+
+[hooks]
+schema.update.after = "bunx @gel/generate edgeql-js --output-dir=src/lib/dbschema --target=ts"
